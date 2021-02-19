@@ -4,6 +4,56 @@ apiVersion: v1
 metadata:
   name: ${NAME}${SUFFIX}
 objects:
+  - kind: NetworkSecurityPolicy
+    apiVersion: security.devops.gov.bc.ca/v1alpha1
+    metadata:
+      name: ${NAME}${SUFFIX}-to-external-network
+      labels:
+        name: ${NAME}${SUFFIX}-to-external-network
+        app: ${APP_NAME}${SUFFIX}
+        app-group: ${APP_GROUP}
+        role: ${ROLE}
+        env: ${TAG_NAME}
+    spec:
+      description: |
+        Allow the agent to access the internet.
+      source:
+        - - role=${ROLE}
+          - app=${APP_NAME}${SUFFIX}
+          - env=${TAG_NAME}
+          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+      destination:
+        - - ext:network=any
+
+  - kind: NetworkSecurityPolicy
+    apiVersion: security.devops.gov.bc.ca/v1alpha1
+    metadata:
+      name: ${NAME}${SUFFIX}
+      labels:
+        name: ${NAME}${SUFFIX}
+        app: ${APP_NAME}${SUFFIX}
+        app-group: ${APP_GROUP}
+        role: ${ROLE}
+        env: ${TAG_NAME}
+    spec:
+      description: |
+        Allow the agent to talk to either the wallet or controller micro services.
+      source:
+        - - role=${ROLE}
+          - app=${APP_NAME}${SUFFIX}
+          - env=${TAG_NAME}
+          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+
+      destination:
+        - - role=wallet
+          - app=${WALLET_APP_NAME}${WALLET_SUFFIX}
+          - env=${TAG_NAME}
+          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+        - - role=controller
+          - app=${APP_NAME}${SUFFIX}
+          - env=${TAG_NAME}
+          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+          
   - kind: Service
     apiVersion: v1
     metadata:
@@ -163,31 +213,19 @@ objects:
                 - $(echo aca-py start
                   --inbound-transport http '0.0.0.0' ${HTTP_INTERFACE_PORT}
                   --outbound-transport http
-                  --endpoint ${AGENT_ENDPOINT}
-                  --genesis-url "${GENESIS_URL}"
-                  --auto-accept-invites
-                  --auto-accept-requests
                   --auto-ping-connection
                   --auto-respond-messages
-                  --auto-respond-credential-offer
-                  --auto-verify-presentation
                   --wallet-type 'indy'
-                  --wallet-name "$(echo ${AGENT_WALLET_NAME} | tr '[:upper:]' '[:lower:]' | sed "s~-~_~g")"
-                  --wallet-key "${WALLET_ENCRYPTION_KEY}"
-                  --wallet-storage-type "${WALLET_TYPE}"
                   --wallet-storage-config "$(eval echo \"${WALLET_STORAGE_CONFIGURATION}\")"
                   --wallet-storage-creds "$(eval echo \"${WALLET_STORAGE_CREDENTIALS}\")"
-                  --seed "${INDY_WALLET_SEED}"
                   --admin '0.0.0.0' ${ADMIN_INTERFACE_PORT}
-                  $([ ! -z "${AGENT_ADMIN_API_KEY}" ] && echo "--admin-api-key ${AGENT_ADMIN_API_KEY}" || echo "--admin-insecure-mode")
-                  --log-level ${AGENT_LOG_LEVEL}
-                  --tails-server-base-url ${TAILS_SERVER_BASE_URL});
+                  $([ ! -z "${AGENT_ADMIN_API_KEY}" ] && echo "--admin-api-key ${AGENT_ADMIN_API_KEY}" || echo "--admin-insecure-mode"));
               env:
-                - name: GENESIS_URL
+                - name: ACAPY_GENESIS_URL
                   value: ${GENESIS_FILE_URL}
-                - name: AGENT_WALLET_NAME
+                - name: ACAPY_WALLET_NAME
                   value: ${NAME}${SUFFIX}-wallet
-                - name: WALLET_TYPE
+                - name: ACAPY_WALLET_STORAGE_TYPE
                   value: ${WALLET_STORAGE_TYPE}
                 - name: POSTGRESQL_WALLET_HOST
                   value: ${WALLET_HOST}${WALLET_SUFFIX}
@@ -212,12 +250,12 @@ objects:
                     secretKeyRef:
                       name: ${WALLET_HOST}${WALLET_SUFFIX}
                       key: admin-password
-                - name: WALLET_ENCRYPTION_KEY
+                - name: ACAPY_WALLET_KEY
                   valueFrom:
                     secretKeyRef:
                       name: ${WALLET_CREDENTIAL_STORE_NAME}${SUFFIX}
                       key: key
-                - name: INDY_WALLET_SEED
+                - name: ACAPY_WALLET_SEED
                   valueFrom:
                     secretKeyRef:
                       name: ${WALLET_CREDENTIAL_STORE_NAME}${SUFFIX}
@@ -240,15 +278,15 @@ objects:
                       key: admin-api-key
                 - name: ACAPY_LABEL
                   value: ${AGENT_LABEL_NAME}
-                - name: AGENT_ENDPOINT
+                - name: ACAPY_ENDPOINT
                   value: ${AGENT_BASE_URL}
                 - name: ACAPY_READ_ONLY_LEDGER
                   value: ${AGENT_READ_ONLY_LEDGER}
-                - name: AGENT_LOG_LEVEL
+                - name: ACAPY_LOG_LEVEL
                   value: ${LOG_LEVEL}
                 - name: TAILS_FILES_DIR
                   value: ${TAILS_FILES_DIR}
-                - name: TAILS_SERVER_BASE_URL
+                - name: ACAPY_TAILS_SERVER_BASE_URL
                   value: ${TAILS_SERVER_BASE_URL}
               image:
               ports:
@@ -303,55 +341,7 @@ objects:
               name: ${SOURCE_IMAGE_NAME}:${TAG_NAME}
               namespace: ${IMAGE_NAMESPACE}
 
-  - kind: NetworkSecurityPolicy
-    apiVersion: security.devops.gov.bc.ca/v1alpha1
-    metadata:
-      name: custom-${APP_NAME}-${NAME}${SUFFIX}-to-external-network
-      labels:
-        name: custom-${APP_NAME}-${NAME}${SUFFIX}-to-external-network
-        app: ${APP_NAME}${SUFFIX}
-        app-group: ${APP_GROUP}
-        role: ${ROLE}
-        env: ${TAG_NAME}
-    spec:
-      description: |
-        Allow the agent to access the internet.
-      source:
-        - - role=${ROLE}
-          - app=${APP_NAME}${SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
-      destination:
-        - - ext:network=any
-
-  - kind: NetworkSecurityPolicy
-    apiVersion: security.devops.gov.bc.ca/v1alpha1
-    metadata:
-      name: custom-${APP_NAME}-${NAME}${SUFFIX}-policy
-      labels:
-        name: custom-${APP_NAME}-${NAME}${SUFFIX}-policy
-        app: ${APP_NAME}${SUFFIX}
-        app-group: ${APP_GROUP}
-        role: ${ROLE}
-        env: ${TAG_NAME}
-    spec:
-      description: |
-        Allow the agent to talk to either the wallet or controller micro services.
-      source:
-        - - role=${ROLE}
-          - app=${APP_NAME}${SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
-
-      destination:
-        - - role=wallet
-          - app=${WALLET_APP_NAME}${WALLET_SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
-        - - role=controller
-          - app=${APP_NAME}${SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+  
 
 parameters:
   - name: NAME
@@ -482,7 +472,7 @@ parameters:
     displayName: Wallet Suffix Name
     required: false
     description: The value of the wallet shared application suffix
-    value: -test
+    value: ""
   - name: WALLET_HOST_PORT
     displayName: PostgreSql Wallet Port
     required: true
