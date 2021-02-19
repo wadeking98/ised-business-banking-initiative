@@ -3,11 +3,49 @@ apiVersion: v1
 metadata:
   name: ${NAME}${SUFFIX}-deployment-template
   annotations:
-    description: Deployment template for a django server connected to a PostGreSQL
+    description:
+      Deployment template for a django server connected to a PostGreSQL
       database.
     tags: django
     iconClass: icon-python
 objects:
+  - kind: ExternalNetwork
+    apiVersion: security.devops.gov.bc.ca/v1alpha1
+    metadata:
+      name: ${NAME}${SUFFIX}
+      network: ${NAME}${SUFFIX}
+      labels:
+        name: ${NAME}${SUFFIX}
+        network: ${NAME}${SUFFIX}
+        app: ${APP_NAME}${SUFFIX}
+        app-group: ${APP_GROUP}
+        env: ${TAG_NAME}
+    spec:
+      description: Defines the network parameters for accessing the auth server
+      entries:
+        - ${OIDC_RP_PROVIDER_HOST}
+      servicePorts:
+        - tcp/443
+
+  - kind: NetworkSecurityPolicy
+    apiVersion: security.devops.gov.bc.ca/v1alpha1
+    metadata:
+      name: ${NAME}${SUFFIX}
+      labels:
+        name: ${NAME}${SUFFIX}
+        env: ${TAG_NAME}
+        app: ${APP_NAME}${SUFFIX}
+        app-group: ${APP_GROUP}
+    spec:
+      description: Allows the service to access the auth server
+      source:
+        - - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+          - role=${ROLE}
+          - app=${APP_NAME}${SUFFIX}
+          - env=${TAG_NAME}
+      destination:
+        - - ext:name=${NAME}${SUFFIX}
+
   - kind: Secret
     apiVersion: v1
     metadata:
@@ -20,6 +58,7 @@ objects:
         env: ${TAG_NAME}
     stringData:
       oidc-rp-provider-endpoint: ${OIDC_RP_PROVIDER_ENDPOINT}
+      oidc-rp-provider-host: ${OIDC_RP_PROVIDER_HOST}
       oidc-rp-client-id: ${OIDC_RP_CLIENT_ID}
       oidc-rp-client-secret: ${OIDC_RP_CLIENT_SECRET}
       oidc-rp-scopes: ${OIDC_RP_SCOPES}
@@ -89,7 +128,7 @@ objects:
             from:
               kind: ImageStreamTag
               namespace: ${IMAGE_NAMESPACE}
-              name: ${NAME}:${TAG_NAME}
+              name: ${IMAGE_NAME}:${TAG_NAME}
         - type: ConfigChange
       replicas: 1
       selector:
@@ -113,7 +152,7 @@ objects:
                     path: ${CUSTOM_HOME_FILE_NAME}
           containers:
             - name: ${NAME}${SUFFIX}
-              image: ' '
+              image: " "
               ports:
                 - containerPort: 8080
                   protocol: TCP
@@ -190,7 +229,8 @@ objects:
 parameters:
   - name: NAME
     displayName: Name
-    description: The name assigned to all of the OpenShift resources associated to
+    description:
+      The name assigned to all of the OpenShift resources associated to
       the server instance.
     required: true
     value: visual-verifier
@@ -208,24 +248,37 @@ parameters:
     displayName: Suffix
     description: A name suffix used for all objects
     required: false
-    value: ''
+    value: ""
   - name: ROLE
     displayName: Role
-    description: The role of this service within the application - used for Network
+    description:
+      The role of this service within the application - used for Network
       Policies
     required: true
     value: visual-verifier
-  - description: The exposed hostname that will route to the service, e.g., myappname.pathfinder.gov.bc.ca,
+  - description:
+      The exposed hostname that will route to the service, e.g., myappname.pathfinder.gov.bc.ca,
       if left blank a value will be defaulted.
     displayName: Application Hostname
     name: APPLICATION_DOMAIN
     value: visual-verifier-dev.pathfinder.gov.bc.ca
+  - name: IMAGE_NAME
+    displayName: Image Name
+    required: true
+    description: The name of the image for this service.
+    value: visual-verifier
   - name: IMAGE_NAMESPACE
     displayName: Image Namespace
     required: true
-    description: The namespace of the OpenShift project containing the imagestream
+    description:
+      The namespace of the OpenShift project containing the imagestream
       for the application.
     value: a99fd4-tools
+  - name: NAMESPACE_NAME
+    displayName: NameSpace name
+    description: name of the project namespace
+    required: true
+    value: a99fd4
   - name: TAG_NAME
     displayName: Environment TAG name
     description: The TAG name for this environment, e.g., dev, test, prod
@@ -233,21 +286,22 @@ parameters:
     required: true
   - name: APP_FILE
     displayName: Application File
-    description: Used to run the application from a Python script. This should be
+    description:
+      Used to run the application from a Python script. This should be
       a path to a Python file (defaults to app.py unless set to null) that will be
       passed to the Python interpreter to start the application (optional).
     required: false
-    value: ''
+    value: ""
   - name: APP_CONFIG
     displayName: Application Configuration File Path
     description: Relative path to Gunicorn configuration file (optional).
     required: false
-    value: ''
+    value: ""
   - name: APP_MODULE
     displayName: Application Module
     description: The python module for application startup.
     required: false
-    value: ''
+    value: ""
   - name: APP_CONFIG_MAP_NAME
     displayName: Application Configuration File Path
     description: Relative path to Gunicorn configuration file (optional).
@@ -272,7 +326,7 @@ parameters:
     displayName: Django Debug
     description: If Django is in debug mode
     required: true
-    value: 'False'
+    value: "False"
   - name: VERIFIER_NAME
     displayName: Verifier Name
     description: Verifier Name
@@ -282,17 +336,22 @@ parameters:
     displayName: OIDC RP Provider Endpoint
     description: OIDC RP Provider Endpoint
     required: true
-    value: ''
+    value: ""
+  - name: OIDC_RP_PROVIDER_HOST
+    displayName: OIDC RP Provider Host
+    description: OIDC RP Provider Host
+    required: false
+    value: ""
   - name: OIDC_RP_CLIENT_ID
     displayName: OIDC RP Client Id
     description: OIDC RP Client Id
     required: true
-    value: ''
+    value: ""
   - name: OIDC_RP_CLIENT_SECRET
     displayName: OIDC RP Client Secret
     description: OIDC RP Client Secret
     required: true
-    value: ''
+    value: ""
   - name: OIDC_RP_SCOPES
     displayName: OIDC RP Scopes
     description: OIDC RP Scopes
@@ -302,12 +361,12 @@ parameters:
     displayName: VC Authentication Presentation Request Configuration Id
     description: VC Authentication Presentation Request Configuration Id
     required: true
-    value: ''
+    value: ""
   - name: OIDC_CLAIMS_REQUIRED
     displayName: OIDC Claims Required
     description: OIDC Claims Required
     required: true
-    value: ''
+    value: ""
   - name: CPU_REQUEST
     displayName: Resources CPU Request
     description: The resources CPU request (in cores) for this build.
