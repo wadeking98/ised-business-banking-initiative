@@ -213,6 +213,7 @@ objects:
                 - $(echo aca-py start
                   --inbound-transport http '0.0.0.0' ${HTTP_INTERFACE_PORT}
                   --outbound-transport http
+                  --auto-accept-requests
                   --auto-ping-connection
                   --auto-respond-messages
                   --wallet-type 'indy'

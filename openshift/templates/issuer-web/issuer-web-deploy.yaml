@@ -228,9 +228,9 @@ objects:
   - kind: NetworkSecurityPolicy
     apiVersion: security.devops.gov.bc.ca/v1alpha1
     metadata:
-      name: custom-${APP_NAME}-${NAME}${SUFFIX}-policy
+      name: ${NAME}${SUFFIX}
       labels:
-        name: custom-${APP_NAME}-${NAME}${SUFFIX}-policy
+        name: ${NAME}${SUFFIX}
         app: ${APP_NAME}${SUFFIX}
         app-group: ${APP_GROUP}
         role: ${ROLE}
