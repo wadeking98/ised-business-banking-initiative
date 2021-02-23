@@ -3,14 +3,14 @@
 # Component: .
 # Template File: ../openshift/templates/wallet/wallet-deploy.yaml
 #=========================================================
-# NAME=wallet
+# NAME=issuer-kit-wallet
 # APP_NAME=issuer-kit
 # APP_GROUP=issuer-shared
 # SUFFIX=
 # BACKUP=target
 # ROLE=wallet
 # IMAGE_NAMESPACE=a99fd4-tools
-# SOURCE_IMAGE_NAME=issuer-kit-wallet
+# SOURCE_IMAGE_NAME=postgresql
 TAG_NAME=dev
 # POSTGRESQL_DATABASE_NAME=identity_kit_wallet
 # POSTGRESQL_USER=[a-zA-Z_][a-zA-Z0-9_]{10}
