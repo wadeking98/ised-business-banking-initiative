@@ -1,0 +1,193 @@
+{
+  "questions": [
+    {
+      "name": "verified_person_key",
+      "type": "text",
+      "title": "User Identifier:",
+      "placeHolder": "",
+      "defaultValue": "Not Issued",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "given_names",
+      "type": "text",
+      "title": "First Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "additional_names",
+      "type": "text",
+      "title": "Additional Names:",
+      "placeHolder": "",
+      "defaultValue": "Not Issued",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "family_name",
+      "type": "text",
+      "title": "Last Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "birthdate",
+      "type": "text",
+      "inputType": "date",
+      "title": "Date of Birth:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "street_address",
+      "type": "text",
+      "title": "Street Address:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "postal_code",
+      "type": "text",
+      "title": "Postal Code:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "locality",
+      "type": "text",
+      "title": "City:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "region",
+      "type": "text",
+      "title": "Province:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "country",
+      "type": "text",
+      "title": "Country:",
+      "placeHolder": "",
+      "defaultValue": "Canada",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "phone_number",
+      "type": "text",
+      "title": "Phone Number:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "alternate_phone_number",
+      "type": "text",
+      "title": "Alternate Phone Number:",
+      "placeHolder": "",
+      "defaultValue": "N.A.",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "email",
+      "type": "text",
+      "title": "Email Address:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "type": "dropdown",
+      "name": "gender",
+      "title": "Gender:",
+      "isRequired": true,
+      "colCount": 0,
+      "choices": [
+        "Not Disclosed",
+        "Female",
+        "Male",
+        "Non-Binary"
+      ]
+    },
+    {
+      "name": "issuer",
+      "type": "text",
+      "title": "Issuer:",
+      "placeHolder": "",
+      "defaultValue": "Ministry of Citizens' Services",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "type": "text",
+      "name": "issue_date",
+      "title": "Issue Date:",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "expiration_date",
+      "type": "text",
+      "title": "Expiration Date:",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "credential_status",
+      "type": "text",
+      "title": "Credential Status:",
+      "placeHolder": "",
+      "defaultValue": "Issued",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "identity_assurance_level",
+      "type": "text",
+      "title": "Identity Assurance Level:",
+      "placeHolder": "",
+      "defaultValue": "N.A.",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "type": "text",
+      "name": "placeholder",
+      "defaultValue": "placeholder",
+      "readOnly": true,
+      "visibleIf": "{issue_date} empty"
+    }
+  ],
+  "triggers": [
+    {
+      "type": "runexpression",
+      "expression": "{placeholder} notempty",
+      "runExpression": "setCurrentDate('issue_date')"
+    },
+    {
+      "type": "runexpression",
+      "expression": "{birthdate} notempty",
+      "runExpression": "setFutureDate('expiration_date', 'birthdate')"
+    }
+  ]
+}

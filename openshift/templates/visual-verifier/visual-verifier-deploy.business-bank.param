@@ -1,0 +1,35 @@
+#=========================================================
+# OpenShift template parameters for:
+# Component: .
+# Template File: ../openshift/templates/visual-verifier/visual-verifier-deploy.yaml
+#=========================================================
+NAME=business-bank-verifier
+APP_NAME=business-bank-verifier
+APP_GROUP=ised-business-banking-initiative
+SUFFIX=
+ROLE=visual-verifier
+APPLICATION_DOMAIN=business-bank-verifier-dev.apps.silver.devops.gov.bc.ca
+IMAGE_NAME=visual-verifier
+IMAGE_NAMESPACE=a99fd4-tools
+NAMESPACE_NAME=a99fd4
+TAG_NAME=dev
+APP_FILE=
+APP_CONFIG=
+APP_MODULE=
+APP_CONFIG_MAP_NAME=business-bank-visual-verifier-config
+CUSTOM_FILES_MOUNT_PATH=/opt/app-root/src/static/
+CUSTOM_HOME_FILE_NAME=custom_home.html
+# DJANGO_SECRET_KEY=[\w]{50}
+DJANGO_DEBUG=False
+VERIFIER_NAME=Business Bank Portal
+OIDC_RP_PROVIDER_ENDPOINT=https://a2a-vc-authn-controller-dev.pathfinder.gov.bc.ca
+OIDC_RP_PROVIDER_HOST=
+OIDC_RP_CLIENT_ID=
+OIDC_RP_CLIENT_SECRET=
+OIDC_RP_SCOPES=openid profile vc_authn
+VC_AUTHN_PRES_REQ_CONF_ID=
+OIDC_CLAIMS_REQUIRED=
+CPU_REQUEST=10m
+CPU_LIMIT=300m
+MEMORY_REQUEST=10Mi
+MEMORY_LIMIT=256Mi

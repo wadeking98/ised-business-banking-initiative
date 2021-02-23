@@ -1,0 +1,150 @@
+{
+  "showProgressBar": "top",
+  "questions": [
+    {
+      "name": "verified_person_key",
+      "type": "text",
+      "title": "User Identifier:",
+      "placeHolder": "",
+      "defaultValue": "N.A.",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "verified_person_issuer",
+      "type": "text",
+      "title": "Verified Person Issuer:",
+      "placeHolder": "",
+      "defaultValue": "Ministry of Citizens' Services",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "verified_organization_key",
+      "type": "text",
+      "title": "Organization ID:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "verified_organization_issuer",
+      "type": "text",
+      "title": "Organization Registration Issuer:",
+      "placeHolder": "",
+      "defaultValue": "BC",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "registered_legal_name",
+      "type": "text",
+      "title": "Registered Legal Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "relationship",
+      "type": "text",
+      "title": "Relationship:",
+      "placeHolder": "",
+      "defaultValue": "Director",
+      "isRequired": true,
+      "readOnly": "true",
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "relationship_description",
+      "type": "text",
+      "title": "Relationship Description:",
+      "placeHolder": "",
+      "defaultValue": "Sits at the Board of Directors of the Organization",
+      "isRequired": true,
+      "readOnly": "true",
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "relationship_status",
+      "type": "text",
+      "title": "Relationship Status:",
+      "placeHolder": "",
+      "defaultValue": "Active",
+      "isRequired": true,
+      "readOnly": "true",
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "relationship_status_effective",
+      "type": "text",
+      "title": "Relationship Status Effective Date:",
+      "placeHolder": "",
+      "isRequired": true,
+      "readOnly": "true",
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "issuer",
+      "type": "text",
+      "title": "Issuer:",
+      "placeHolder": "",
+      "defaultValue": "BC Registries",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "issue_date",
+      "type": "text",
+      "title": "Issue Date:",
+      "placeHolder": "",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "expiration_date",
+      "type": "text",
+      "title": "Expiration Date:",
+      "placeHolder": "",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "credential_status",
+      "type": "text",
+      "title": "Credential Status:",
+      "placeHolder": "",
+      "defaultValue": "Active",
+      "readOnly": true,
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "type": "text",
+      "name": "registration_date",
+      "defaultValue": "ORG. REGISTRATION DATE",
+      "readOnly": true,
+      "visibleIf": "{relationship_status_effective} empty"
+    },
+    {
+      "type": "text",
+      "name": "placeholder",
+      "defaultValue": "placeholder",
+      "readOnly": true,
+      "visibleIf": "{registered_legal_name} empty"
+    }
+  ],
+  "triggers": [
+    {
+      "type": "runexpression",
+      "expression": "{placeholder} notempty",
+      "runExpression": "populateFields()"
+    }
+  ]
+}
