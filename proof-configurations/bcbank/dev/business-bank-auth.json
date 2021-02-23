@@ -1,6 +1,6 @@
 {
   "id": "business-bank-auth_dev",
-  "subject_identifier": "email_address",
+  "subject_identifier": "verified_organization_key",
   "configuration": {
     "name": "business-bank-auth",
     "version": "0.0.1",

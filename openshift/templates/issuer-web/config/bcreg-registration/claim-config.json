@@ -353,7 +353,7 @@
           "requiredErrorText": "Required Field"
         },
         {
-          "name": "verified_organization_issuer",
+          "name": "issuer",
           "type": "text",
           "title": "Issuer:",
           "placeHolder": "",
@@ -414,7 +414,7 @@
       ]
     }
   ],
-  "triggers": [    
+  "triggers": [
     {
       "type": "runexpression",
       "expression": "{placeholder} notempty",

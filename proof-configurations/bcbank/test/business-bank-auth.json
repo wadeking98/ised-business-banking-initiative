@@ -1,8 +1,8 @@
 {
-  "id": "bcreg-registered-org_dev",
+  "id": "business-bank-auth_test",
   "subject_identifier": "verified_organization_key",
   "configuration": {
-    "name": "bcreg-registered-org",
+    "name": "business-bank-auth",
     "version": "0.0.1",
     "requested_attributes": [
       {
@@ -50,8 +50,32 @@
         ],
         "restrictions": [
           {
-            "schema_issuer_did": "QU5am4Uzi58wUUh3mzfb1b",
+            "schema_issuer_did": "rcruXFgWnAXH44ofKfaRQ",
             "schema_name": "bc_registries_registration",
+            "schema_version": "0.1.0"
+          }
+        ]
+      },
+      {
+        "names": [
+          "verified_person_key",
+          "verified_person_issuer",
+          "verified_organization_key",
+          "verified_organization_issuer",
+          "registered_legal_name",
+          "relationship",
+          "relationship_description",
+          "relationship_status",
+          "relationship_status_effective",
+          "issuer",
+          "issue_date",
+          "expiration_date",
+          "credential_status"
+        ],
+        "restrictions": [
+          {
+            "schema_issuer_did": "rcruXFgWnAXH44ofKfaRQ",
+            "schema_name": "bc_registries_relationship",
             "schema_version": "0.1.0"
           }
         ]
@@ -80,7 +104,7 @@
         ],
         "restrictions": [
           {
-            "schema_issuer_did": "UvwKfRpFsiHEiWHj8NtNdL",
+            "schema_issuer_did": "66AgL9NJk8p9bBpzXmXKd9",
             "schema_name": "verified_person",
             "schema_version": "0.1.0"
           }

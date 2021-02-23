@@ -19,8 +19,6 @@ function setDirectorData(survey) {
   var lastName = survey.getValue("family_name");
   survey.setValue(nameField, `${lastName}, ${firstName}`);
   survey.getQuestionByName(nameField).readOnly = false;
-  console.log(`Set ${nameField} to '${lastName}, ${firstName}'`);
-
 
   var addressFields = [
     "street_address",

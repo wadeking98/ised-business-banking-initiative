@@ -1,5 +1,5 @@
 {
-  "id": "bcreg-registered-org_dev",
+  "id": "bcreg-registered-org_test",
   "subject_identifier": "verified_organization_key",
   "configuration": {
     "name": "bcreg-registered-org",
@@ -50,7 +50,7 @@
         ],
         "restrictions": [
           {
-            "schema_issuer_did": "QU5am4Uzi58wUUh3mzfb1b",
+            "schema_issuer_did": "rcruXFgWnAXH44ofKfaRQ",
             "schema_name": "bc_registries_registration",
             "schema_version": "0.1.0"
           }
@@ -80,7 +80,7 @@
         ],
         "restrictions": [
           {
-            "schema_issuer_did": "UvwKfRpFsiHEiWHj8NtNdL",
+            "schema_issuer_did": "66AgL9NJk8p9bBpzXmXKd9",
             "schema_name": "verified_person",
             "schema_version": "0.1.0"
           }
