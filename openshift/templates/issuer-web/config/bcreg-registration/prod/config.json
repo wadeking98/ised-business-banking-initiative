@@ -34,7 +34,12 @@
     "schema_id": "G3BgNk1zGVoht1o9cDeuJs:2:bc_registries_registration:0.1.0"
   },
   "issuedSuccess": {
-    "successText": "",
-    "links": []
+    "successText": "Your Verified Organization Credential is now in your digital wallet. For this Business Banking Proof of Concept, you now need a third credential that connects your person credential to your organization credential.",
+    "links": [
+	    {
+        "url": "https://bcreg-relationship-issuer.apps.silver.devops.gov.bc.ca",
+        "description": "Get your relationship credential"
+      }
+    ]
   }
 }
