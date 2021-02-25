@@ -31,7 +31,7 @@
     "url": "/api"
   },
   "credentials": {
-    "schema_id": "rcruXFgWnAXH44ofKfaRQ:2:bc_registries_registration:0.1.0"
+    "schema_id": "QU5am4Uzi58wUUh3mzfb1b:2:bc_registries_registration:0.1.0"
   },
   "issuedSuccess": {
     "successText": "Your Verified Organization Credential is now in your digital wallet. For this Business Banking Proof of Concept, you now need a third credential that connects your person credential to your organization credential.",
