@@ -30,7 +30,7 @@
     "url": "/api"
   },
   "issuedSuccess": {
-    "successText": "Your Verified Person Credential is now in your digital wallet. You may now close this window.",
+    "successText": "You may now close this window.",
     "links": []
   }
 }
