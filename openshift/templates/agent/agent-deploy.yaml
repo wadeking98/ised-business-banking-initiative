@@ -216,6 +216,7 @@ objects:
                   --auto-accept-requests
                   --auto-ping-connection
                   --auto-respond-messages
+                  --auto-provision
                   --wallet-type 'indy'
                   --wallet-storage-config "$(eval echo \"${WALLET_STORAGE_CONFIGURATION}\")"
                   --wallet-storage-creds "$(eval echo \"${WALLET_STORAGE_CREDENTIALS}\")"
