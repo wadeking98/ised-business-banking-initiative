@@ -7,10 +7,14 @@
 # APP_NAME=issuer-kit
 # APP_GROUP=issuer-shared
 # SUFFIX=
-# BACKUP=target
+# BACKUP=true
+# BACKUP_APP_NAME=backup-postgres
 # ROLE=wallet
+# AGENT_ROLE=agent
+# BACKUP_ROLE=backup-container
+# NAMESPACE_NAME=a99fd4
 # IMAGE_NAMESPACE=a99fd4-tools
-# SOURCE_IMAGE_NAME=postgresql
+# SOURCE_IMAGE_NAME=issuer-kit-wallet
 TAG_NAME=test
 # POSTGRESQL_DATABASE_NAME=identity_kit_wallet
 # POSTGRESQL_USER=[a-zA-Z_][a-zA-Z0-9_]{10}
