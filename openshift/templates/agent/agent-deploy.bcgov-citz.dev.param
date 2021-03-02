@@ -8,6 +8,7 @@
 # APP_GROUP=ised-business-banking-initiative
 # SUFFIX=-bcgov-citz
 # ROLE=agent
+# API_ROLE=api
 APPLICATION_DOMAIN=bcgov-citz-agent-dev.apps.silver.devops.gov.bc.ca
 ADMIN_APPLICATION_DOMAIN=bcgov-citz-agent-admin-dev.apps.silver.devops.gov.bc.ca
 # ROUTE_TIMEOUT=120s
@@ -40,6 +41,6 @@ AGENT_BASE_URL=https://bcgov-citz-agent-dev.apps.silver.devops.gov.bc.ca
 # TAILS_FILES_VOLUME_SIZE=1Gi
 TAILS_SERVER_BASE_URL=https://tails-server-dev.pathfinder.gov.bc.ca
 # CPU_REQUEST=10m
-# CPU_LIMIT=1000m
+# CPU_LIMIT=300m
 # MEMORY_REQUEST=10Mi
-# MEMORY_LIMIT=1Gi
+# MEMORY_LIMIT=512Mi
