@@ -7,8 +7,81 @@ metadata:
     tags: nodejs
     iconClass: icon-nodejs
 objects:
-  - kind: NetworkSecurityPolicy
-    apiVersion: security.devops.gov.bc.ca/v1alpha1
+  # - kind: NetworkSecurityPolicy
+  #   apiVersion: security.devops.gov.bc.ca/v1alpha1
+  #   metadata:
+  #     name: custom-${APP_NAME}-${NAME}${SUFFIX}-pods-to-api
+  #     labels:
+  #       name: custom-${APP_NAME}-${NAME}${SUFFIX}-pods-to-api
+  #       app: ${APP_NAME}${SUFFIX}
+  #       app-group: ${APP_GROUP}
+  #       role: ${ROLE}
+  #       env: ${TAG_NAME}
+  #   spec:
+  #     description: 'Allow pods to talk to the internal api so deployments work.
+
+  #       This only needs to be specified once per environment.
+
+  #       '
+  #     source:
+  #       - - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+  #     destination:
+  #       - - int:network=internal-cluster-api-endpoint
+
+  # - kind: NetworkSecurityPolicy
+  #   apiVersion: security.devops.gov.bc.ca/v1alpha1
+  #   metadata:
+  #     name: custom-${APP_NAME}-${NAME}${SUFFIX}-policy
+  #     labels:
+  #       name: custom-${APP_NAME}-${NAME}${SUFFIX}-policy
+  #       app: ${APP_NAME}${SUFFIX}
+  #       app-group: ${APP_GROUP}
+  #       role: ${ROLE}
+  #       env: ${TAG_NAME}
+  #   spec:
+  #     description: 'Allow the controller to talk to either the database or agent micro
+  #       services.
+
+  #       '
+  #     source:
+  #       - - role=${ROLE}
+  #         - app=${APP_NAME}${SUFFIX}
+  #         - env=${TAG_NAME}
+  #         - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+  #     destination:
+  #       - - role=db
+  #         - app=${DB_APP_NAME}${DB_SUFFIX}
+  #         - env=${TAG_NAME}
+  #         - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+  #       - - role=agent
+  #         - app=${APP_NAME}${SUFFIX}
+  #         - env=${TAG_NAME}
+  #         - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+
+  # - kind: NetworkSecurityPolicy
+  #   apiVersion: security.devops.gov.bc.ca/v1alpha1
+  #   metadata:
+  #     name: ${NAME}${SUFFIX}-to-external-network
+  #     labels:
+  #       name: ${NAME}${SUFFIX}-to-external-network
+  #       app: ${APP_NAME}${SUFFIX}
+  #       app-group: ${APP_GROUP}
+  #       role: ${ROLE}
+  #       env: ${TAG_NAME}
+  #   spec:
+  #     description: 'Allow the controller to access the internet.
+
+  #       '
+  #     source:
+  #       - - role=${ROLE}
+  #         - app=${APP_NAME}${SUFFIX}
+  #         - env=${TAG_NAME}
+  #         - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
+  #     destination:
+  #       - - ext:network=any
+
+  - kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
     metadata:
       name: ${NAME}${SUFFIX}
       labels:
@@ -18,24 +91,36 @@ objects:
         role: ${ROLE}
         env: ${TAG_NAME}
     spec:
-      description:
-        "Allow the controller to talk to the database and agent micro
-        services, and to access the internet."
-      source:
-        - - role=${ROLE}
-          - app=${APP_NAME}${SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
-      destination:
-        - - role=db
-          - app=${DB_APP_NAME}${DB_SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
-        - - role=agent
-          - app=${APP_NAME}${SUFFIX}
-          - env=${TAG_NAME}
-          - $namespace=${NAMESPACE_NAME}-${TAG_NAME}
-        - - ext:network=any        
+      description: |
+        Allow the agent and the frontend services to access the PI.
+      ingress:
+        - from:
+            - podSelector:
+                matchLabels:
+                  role: ${AGENT_ROLE}
+                  app: ${APP_NAME}${SUFFIX}
+                  env: ${TAG_NAME}
+              namespaceSelector:
+                matchLabels:
+                  name: ${NAMESPACE_NAME}
+                  environment: ${TAG_NAME}
+            - podSelector:
+                matchLabels:
+                  role: ${PUBLIC_FRONTEND_ROLE}
+                  app: ${APP_NAME}${SUFFIX}
+                  env: ${TAG_NAME}
+              namespaceSelector:
+                matchLabels:
+                  name: ${NAMESPACE_NAME}
+                  environment: ${TAG_NAME}
+          ports:
+            - protocol: TCP
+              port: ${{SERVICE_PORT}}
+      podSelector:
+        matchLabels:
+          role: ${ROLE}
+          app: ${APP_NAME}${SUFFIX}
+          env: ${TAG_NAME}
 
   - kind: Secret
     apiVersion: v1
@@ -228,32 +313,17 @@ parameters:
       The name assigned to all of the OpenShift resources associated to
       the server instance.
     required: true
-    value: issuer-kit-controller
-  - name: DB_APP_NAME
-    displayName: App Name
-    description: Used to group components together in the OpenShift console.
-    required: true
-    value: issuer-kit
-  - name: DB_SUFFIX
-    displayName: Suffix
-    description: A suffix applied to all of the objects in this template.
-    required: false
-    value: ""
-  - name: DB_SERVICE
-    displayName: Database Service Name
-    description: The name of the database server/service.
-    required: true
-    value: issuer-kit-db
+    value: issuer-kit-api
   - name: APP_NAME
     displayName: App Name
     description: Used to group components together in the OpenShift console.
     required: true
-    value: issuer-kit
+    value: issuer
   - name: APP_GROUP
     displayName: App Group
     description: The name assigned to all of the deployments in this project.
     required: true
-    value: issuer-kit-controller
+    value: issuer-kit-api
   - name: SUFFIX
     displayName: Suffix
     description: A suffix applied to all of the objects in this template.
@@ -265,7 +335,21 @@ parameters:
       The role of this service within the application - used for Network
       Policies
     required: true
-    value: controller
+    value: api
+  - name: AGENT_ROLE
+    displayName: Agent Role
+    description:
+      The role of the agent service within the application - used for Network
+      Policies
+    required: true
+    value: agent
+  - name: PUBLIC_FRONTEND_ROLE
+    displayName: Public Frontend Role
+    description:
+      The role of the public frontend service within the application - used for Network
+      Policies
+    required: true
+    value: public-frontend
   - name: IMAGE_NAMESPACE
     displayName: Image Namespace
     required: true
@@ -294,12 +378,27 @@ parameters:
     description:
       Name of the deployed database (see environment variables in deployed
       database).
-    value: identity_kit_db
+    value: issuer_db
+  - name: DB_APP_NAME
+    displayName: App Name
+    description: Used to group components together in the OpenShift console.
+    required: true
+    value: issuer-kit-shared
+  - name: DB_SUFFIX
+    displayName: Suffix
+    description: A suffix applied to all of the objects in this template.
+    required: false
+    value: ""
+  - name: DB_SERVICE
+    displayName: Database Service Name
+    description: The name of the database server/service.
+    required: true
+    value: issuer-kit-db
   - name: SOURCE_IMAGE_NAME
     displayName: Source Image Name
     description: The name of the image to use for this resource.
     required: true
-    value: issuer-kit-controller
+    value: issuer-kit-api
   - name: TAG_NAME
     displayName: Environment TAG name
     description: The TAG name for this environment, e.g., dev, test, prod
@@ -309,7 +408,7 @@ parameters:
     displayName: Agent Service name
     description: Agent service name
     required: true
-    value: issuer-kit-agent
+    value: agent
   - name: AGENT_ADMIN_PORT
     displayName: Agent Admin Port
     description: Agent admin port
