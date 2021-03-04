@@ -1,6 +1,6 @@
 def PIPELINE_NAME = "visual-verifier"
 
-def LIB_NAME= "covid19-es-lib"
+def LIB_NAME= "ised-business-banking-lib"
 def LIB_REPO = "https://github.com/bcgov/ised-business-banking-initiative.git"
 def LIB_BRANCH = "master"
 library identifier: "${LIB_NAME}@${LIB_BRANCH}", 
