@@ -12,7 +12,7 @@
     "enabled": true,
     "autoSignOut": true,
     "oidcSettings": {
-      "authority": "https://oidc.gov.bc.ca/auth/realms/gzyg46lx",
+      "authority": "https://test.oidc.gov.bc.ca/auth/realms/gzyg46lx",
       "clientId": "bcgov-citz-issuer",
       "redirectUri": "https://bcgov-citz-issuer.apps.silver.devops.gov.bc.ca/oidc-callback",
       "redirect_uri": "https://bcgov-citz-issuer.apps.silver.devops.gov.bc.ca/oidc-callback-error",
