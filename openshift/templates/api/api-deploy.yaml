@@ -230,7 +230,7 @@ objects:
                 initialDelaySeconds: 3
                 timeoutSeconds: 20
                 httpGet:
-                  path: /
+                  path: "/health"
                   port: ${{SERVICE_PORT}}
               livenessProbe:
                 failureThreshold: 5
@@ -238,7 +238,7 @@ objects:
                 initialDelaySeconds: 30
                 timeoutSeconds: 20
                 httpGet:
-                  path: /
+                  path: "/health"
                   port: ${{SERVICE_PORT}}
               env:
                 - name: PORT
