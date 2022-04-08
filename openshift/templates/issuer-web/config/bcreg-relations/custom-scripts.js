@@ -2,26 +2,17 @@
 
 function setDateFields(survey) {
   var currentDateFields = ["issue_date"];
-  var futureDateFields = ["expiration_date"];
 
   var now = new Date();
-  var year = now.getFullYear();
-  var month = now.getMonth();
-  var day = now.getDate();
-  var future = new Date(year + 1, month, day);
   currentDateFields.forEach(function (dateField) {
     survey.setValue(dateField, new Intl.DateTimeFormat("en-CA").format(now));
     survey.getQuestionByName(dateField).readOnly = true;
   });
-  futureDateFields.forEach(function (dateField) {
-    survey.setValue(dateField, new Intl.DateTimeFormat("en-CA").format(future));
-    survey.getQuestionByName(dateField).readOnly = true;
-  });
 
   // Set value from received claim
-  var orgRegistrationDate = survey.getValue("registration_date");
-  survey.setValue("relationship_status_effective", orgRegistrationDate);
-  survey.setValue("registration_date", "");
+  var orgRegistrationDate = survey.getValue("registrationDate");
+  survey.setValue("relationshipEffectiveDate", orgRegistrationDate);
+  survey.setValue("registrationDate", "");
 }
 
 function populateFields() {

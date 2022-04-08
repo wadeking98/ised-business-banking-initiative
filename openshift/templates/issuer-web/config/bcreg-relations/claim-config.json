@@ -2,27 +2,7 @@
   "showProgressBar": "top",
   "questions": [
     {
-      "name": "verified_person_key",
-      "type": "text",
-      "title": "User Identifier:",
-      "placeHolder": "",
-      "defaultValue": "N.A.",
-      "isRequired": true,
-      "readOnly": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "verified_person_issuer",
-      "type": "text",
-      "title": "Verified Person Issuer:",
-      "placeHolder": "",
-      "defaultValue": "Ministry of Citizens' Services",
-      "isRequired": true,
-      "readOnly": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "verified_organization_key",
+      "name": "orgID",
       "type": "text",
       "title": "Organization ID:",
       "placeHolder": "",
@@ -30,17 +10,43 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "verified_organization_issuer",
+      "name": "CRABusinessNumber",
       "type": "text",
-      "title": "Organization Registration Issuer:",
+      "title": "Business Number:",
       "placeHolder": "",
-      "defaultValue": "BC",
-      "readOnly": true,
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "registered_legal_name",
+      "name": "givenName",
+      "type": "text",
+      "title": "First Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "additionalName",
+      "type": "text",
+      "title": "Additional Names:",
+      "placeHolder": "",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "familyName",
+      "type": "text",
+      "title": "Last Name:",
+      "placeHolder": "",
+      "isRequired": true,
+      "readOnly": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "organizationIssuerLegalName",
       "type": "text",
       "title": "Registered Legal Name:",
       "placeHolder": "",
@@ -55,11 +61,11 @@
       "placeHolder": "",
       "defaultValue": "Director",
       "isRequired": true,
-      "readOnly": "true",
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "relationship_description",
+      "name": "title",
       "type": "text",
       "title": "Relationship Description:",
       "placeHolder": "",
@@ -69,22 +75,12 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "relationship_status",
-      "type": "text",
-      "title": "Relationship Status:",
-      "placeHolder": "",
-      "defaultValue": "Active",
-      "isRequired": true,
-      "readOnly": "true",
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "relationship_status_effective",
+      "name": "relationshipEffectiveDate",
       "type": "text",
       "title": "Relationship Status Effective Date:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": "true",
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -98,29 +94,10 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "issue_date",
+      "name": "issueDate",
       "type": "text",
       "title": "Issue Date:",
       "placeHolder": "",
-      "readOnly": true,
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "expiration_date",
-      "type": "text",
-      "title": "Expiration Date:",
-      "placeHolder": "",
-      "readOnly": true,
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "credential_status",
-      "type": "text",
-      "title": "Credential Status:",
-      "placeHolder": "",
-      "defaultValue": "Active",
       "readOnly": true,
       "isRequired": true,
       "requiredErrorText": "Required Field"
@@ -130,7 +107,7 @@
       "name": "registration_date",
       "defaultValue": "ORG. REGISTRATION DATE",
       "readOnly": true,
-      "visibleIf": "{relationship_status_effective} empty"
+      "visibleIf": "{relationshipEffectiveDate} empty"
     },
     {
       "type": "text",

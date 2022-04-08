@@ -1,28 +1,27 @@
 [
   {
     "attributes": [
-      "verified_person_key",
-      "given_names",
-      "additional_names",
-      "family_name",
-      "birthdate",
-      "street_address",
-      "postal_code",
+      "givenName",
+      "additionalName",
+      "familyName",
+      "dateOfBirth",
+      "streetAddress",
+      "addressNotes",
+      "postalCode",
       "locality",
       "region",
       "country",
-      "phone_number",
-      "alternate_phone_number",
+      "phoneNumber",
+      "alternatePhoneNumber",
       "email",
       "gender",
       "issuer",
-      "issue_date",
-      "expiration_date",
-      "credential_status",
-      "identity_assurance_level"
+      "issueDate",
+      "expirationDate",
+      "IdentityLevelOfAssurance"
     ],
     "schema_name": "verified_person",
-    "schema_version": "0.1.0",
+    "schema_version": "0.1.2",
     "default": true,
     "public": false
   }

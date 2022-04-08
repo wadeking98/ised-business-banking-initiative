@@ -1,17 +1,7 @@
 {
   "questions": [
     {
-      "name": "verified_person_key",
-      "type": "text",
-      "title": "User Identifier:",
-      "placeHolder": "",
-      "defaultValue": "Not Issued",
-      "isRequired": true,
-      "readOnly": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "given_names",
+      "name": "givenName",
       "type": "text",
       "title": "First Name:",
       "placeHolder": "",
@@ -19,7 +9,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "additional_names",
+      "name": "additionalName",
       "type": "text",
       "title": "Additional Names:",
       "placeHolder": "",
@@ -29,7 +19,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "family_name",
+      "name": "familyName",
       "type": "text",
       "title": "Last Name:",
       "placeHolder": "",
@@ -37,7 +27,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "birthdate",
+      "name": "dateOfBirth",
       "type": "text",
       "inputType": "date",
       "title": "Date of Birth:",
@@ -46,7 +36,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "street_address",
+      "name": "streetAddress",
       "type": "text",
       "title": "Street Address:",
       "placeHolder": "",
@@ -54,7 +44,15 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "postal_code",
+      "name": "addressNotes",
+      "type": "text",
+      "title": "Address Notes:",
+      "placeHolder": "",
+      "isRequired": true,
+      "requiredErrorText": "Required Field"
+    },
+    {
+      "name": "postalCode",
       "type": "text",
       "title": "Postal Code:",
       "placeHolder": "",
@@ -87,7 +85,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "phone_number",
+      "name": "phoneNumber",
       "type": "text",
       "title": "Phone Number:",
       "placeHolder": "",
@@ -95,7 +93,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "alternate_phone_number",
+      "name": "alternatePhoneNumber",
       "type": "text",
       "title": "Alternate Phone Number:",
       "placeHolder": "",
@@ -136,14 +134,14 @@
     },
     {
       "type": "text",
-      "name": "issue_date",
+      "name": "issueDate",
       "title": "Issue Date:",
       "readOnly": true,
       "isRequired": true,
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "expiration_date",
+      "name": "expirationDate",
       "type": "text",
       "title": "Expiration Date:",
       "readOnly": true,
@@ -151,17 +149,7 @@
       "requiredErrorText": "Required Field"
     },
     {
-      "name": "credential_status",
-      "type": "text",
-      "title": "Credential Status:",
-      "placeHolder": "",
-      "defaultValue": "Issued",
-      "readOnly": true,
-      "isRequired": true,
-      "requiredErrorText": "Required Field"
-    },
-    {
-      "name": "identity_assurance_level",
+      "name": "IdentityLevelOfAssurance",
       "type": "text",
       "title": "Identity Assurance Level:",
       "placeHolder": "",
@@ -175,19 +163,19 @@
       "name": "placeholder",
       "defaultValue": "placeholder",
       "readOnly": true,
-      "visibleIf": "{issue_date} empty"
+      "visibleIf": "{issueDate} empty"
     }
   ],
   "triggers": [
     {
       "type": "runexpression",
       "expression": "{placeholder} notempty",
-      "runExpression": "setCurrentDate('issue_date')"
+      "runExpression": "setCurrentDate('issueDate')"
     },
     {
       "type": "runexpression",
-      "expression": "{birthdate} notempty",
-      "runExpression": "setFutureDate('expiration_date', 'birthdate')"
+      "expression": "{dateOfBirth} notempty",
+      "runExpression": "setFutureDate('expirationDate', 'dateOfBirth')"
     }
   ]
 }
