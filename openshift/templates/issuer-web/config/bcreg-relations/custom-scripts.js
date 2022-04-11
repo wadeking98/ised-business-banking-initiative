@@ -1,7 +1,7 @@
 /* Include all your custom JS code in here, it will be available to the app instance */
 
 function setDateFields(survey) {
-  var currentDateFields = ["issue_date"];
+  var currentDateFields = ["issueDate"];
 
   var now = new Date();
   currentDateFields.forEach(function (dateField) {

@@ -26,7 +26,7 @@
       "orgID"
     ],
     "schema_name": "bc_registries_registration",
-    "schema_version": "0.1.1",
+    "schema_version": "0.1.2",
     "public": false
   },
   {
@@ -44,7 +44,7 @@
       "issueDate"
     ],
     "schema_name": "bc_registries_relationship",
-    "schema_version": "0.1.1",
+    "schema_version": "0.1.2",
     "public": false
   }
 ]

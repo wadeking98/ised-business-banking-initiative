@@ -22,10 +22,6 @@ function setDateFields(survey) {
   ];
 
   var now = new Date();
-  var year = now.getFullYear();
-  var month = now.getMonth();
-  var day = now.getDate();
-  var future = new Date(year + 1, month, day);
   currentDateFields.forEach(function (dateField) {
     survey.setValue(dateField, new Intl.DateTimeFormat("en-CA").format(now));
     survey.getQuestionByName(dateField).readOnly = true;
