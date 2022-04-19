@@ -48,6 +48,8 @@
       "type": "text",
       "title": "Address Notes:",
       "placeHolder": "",
+      "defaultValue":"N.A.",
+      "readOnly": true,
       "isRequired": true,
       "requiredErrorText": "Required Field"
     },

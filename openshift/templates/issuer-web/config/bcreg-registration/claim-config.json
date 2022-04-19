@@ -77,6 +77,7 @@
           "title": "Address Type:",
           "placeHolder": "",
           "defaultValue": "Mailing",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         },
@@ -85,7 +86,8 @@
           "type": "text",
           "title": "Address Notes:",
           "placeHolder": "",
-          "defaultValue": "",
+          "defaultValue": "N.A.",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         },
@@ -150,6 +152,7 @@
           "title": "Legislation Jurisdiction:",
           "placeHolder": "",
           "defaultValue": "BC",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         }
@@ -164,6 +167,7 @@
           "title": "Director Count:",
           "placeHolder": "",
           "defaultValue": "1",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         },
@@ -172,7 +176,8 @@
           "type": "text",
           "title": "Director List:",
           "placeHolder": "",
-          "defaultValue": "",
+          "defaultValue": "N.A.",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         }

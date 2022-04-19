@@ -7,6 +7,7 @@
       "title": "Organization ID:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -15,7 +16,7 @@
       "title": "Business Number:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -24,7 +25,7 @@
       "title": "First Name:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -33,7 +34,7 @@
       "title": "Additional Names:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -42,7 +43,7 @@
       "title": "Last Name:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -51,7 +52,7 @@
       "title": "Registered Legal Name:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -61,7 +62,7 @@
       "placeHolder": "",
       "defaultValue": "Director",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -69,9 +70,9 @@
       "type": "text",
       "title": "Relationship Description:",
       "placeHolder": "",
-      "defaultValue": "Sits at the Board of Directors of the Organization",
+      "defaultValue": "Sits on the Board of Directors of the Organization",
       "isRequired": true,
-      "readOnly": "false",
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -80,7 +81,7 @@
       "title": "Relationship Status Effective Date:",
       "placeHolder": "",
       "isRequired": true,
-      "readOnly": false,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -89,7 +90,7 @@
       "title": "Issuer:",
       "placeHolder": "",
       "defaultValue": "BC Registries",
-      "readOnly": false,
+      "readOnly": true,
       "isRequired": true,
       "requiredErrorText": "Required Field"
     },
@@ -98,9 +99,16 @@
       "type": "text",
       "title": "Issue Date:",
       "placeHolder": "",
-      "readOnly": false,
+      "readOnly": true,
       "isRequired": true,
       "requiredErrorText": "Required Field"
+    },
+    {
+      "type": "text",
+      "name": "registrationDate",
+      "defaultValue": "ORG. REGISTRATION DATE",
+      "readOnly": true,
+      "visibleIf": "{relationshipEffectiveDate} empty"
     },
     {
       "type": "text",
