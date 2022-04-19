@@ -31,7 +31,7 @@
     "url": "/api"
   },
   "credentials": {
-    "schema_id": "rcruXFgWnAXH44ofKfaRQ:2:bc_registries_relationship:0.1.0"
+    "schema_id": "rcruXFgWnAXH44ofKfaRQ:2:bc_registries_relationship:0.1.2"
   },
     "issuedSuccess": {
     "successText": "Your Verified Relationship Credential is now in your digital wallet, together with the person and organization credentials. This means that you can now prove who you are and that you're legally allowed to represent your organization. For the final part of this Proof of Concept we will show how your credentials could be used to open a bank account.",
