@@ -135,6 +135,7 @@
           "placeHolder": "",
           "defaultValue": "",
           "isRequired": false,
+          "readOnly":true,
           "requiredErrorText": "Required Field"
         },
         {
@@ -161,6 +162,24 @@
     {
       "title": "Organization Directors - page {pageno} of {pagecount}.",
       "questions": [
+        {
+          "name": "givenName",
+          "type": "text",
+          "title": "Given Name:",
+          "placeHolder": "",
+          "readOnly": true,
+          "requiredErrorText": "Required Field",
+          "visibleIf": "{CRABusinessNumber} empty"
+        },
+        {
+          "name": "familyName",
+          "type": "text",
+          "title": "Family Name:",
+          "placeHolder": "",
+          "readOnly": true,
+          "requiredErrorText": "Required Field",
+          "visibleIf": "{CRABusinessNumber} empty"
+        },
         {
           "name": "directorCount",
           "type": "text",
@@ -246,6 +265,11 @@
       "type": "runexpression",
       "expression": "{placeholder} notempty",
       "runExpression": "populateFields()"
+    },
+    {
+      "type": "runexpression",
+      "expression": "{familyName} notempty && {givenName} notempty",
+      "runExpression": "addDirector('givenName','familyName', 'directorList')"
     }
   ]
 }

@@ -27,6 +27,7 @@
     ],
     "schema_name": "bc_registries_registration",
     "schema_version": "0.1.2",
+    "tag":"verifiedOrganization",
     "public": false
   },
   {
@@ -45,6 +46,7 @@
     ],
     "schema_name": "bc_registries_relationship",
     "schema_version": "0.1.2",
+    "tag":"verifiedRelationship",
     "public": false
   }
 ]
