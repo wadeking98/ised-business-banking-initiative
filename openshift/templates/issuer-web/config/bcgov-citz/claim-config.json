@@ -6,6 +6,7 @@
       "title": "First Name:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -13,8 +14,8 @@
       "type": "text",
       "title": "Additional Names:",
       "placeHolder": "",
-      "defaultValue": "Not Issued",
-      "isRequired": true,
+      "defaultValue": "",
+      "isRequired": false,
       "readOnly": true,
       "requiredErrorText": "Required Field"
     },
@@ -24,6 +25,7 @@
       "title": "Last Name:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -33,6 +35,7 @@
       "title": "Date of Birth:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -41,6 +44,7 @@
       "title": "Street Address:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -48,7 +52,9 @@
       "type": "text",
       "title": "Address Notes:",
       "placeHolder": "",
-      "isRequired": true,
+      "defaultValue":"",
+      "readOnly": true,
+      "isRequired": false,
       "requiredErrorText": "Required Field"
     },
     {
@@ -57,6 +63,7 @@
       "title": "Postal Code:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -65,6 +72,7 @@
       "title": "City:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -73,6 +81,7 @@
       "title": "Province:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -82,6 +91,7 @@
       "placeHolder": "",
       "defaultValue": "Canada",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -89,7 +99,8 @@
       "type": "text",
       "title": "Phone Number:",
       "placeHolder": "",
-      "isRequired": true,
+      "defaultValue": "",
+      "readOnly":true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -97,8 +108,8 @@
       "type": "text",
       "title": "Alternate Phone Number:",
       "placeHolder": "",
-      "defaultValue": "N.A.",
-      "isRequired": true,
+      "defaultValue": "",
+      "readOnly":true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -106,14 +117,16 @@
       "type": "text",
       "title": "Email Address:",
       "placeHolder": "",
-      "isRequired": true,
+      "readOnly" :true,
+      "defaultValue": "",
       "requiredErrorText": "Required Field"
     },
     {
       "type": "dropdown",
       "name": "gender",
       "title": "Gender:",
-      "isRequired": true,
+      "readOnly" :true,
+      "defaultValue": "",
       "colCount": 0,
       "choices": [
         "Not Disclosed",
@@ -127,7 +140,7 @@
       "type": "text",
       "title": "Issuer:",
       "placeHolder": "",
-      "defaultValue": "Ministry of Citizens' Services",
+      "defaultValue": "BC",
       "isRequired": true,
       "readOnly": true,
       "requiredErrorText": "Required Field"
@@ -153,9 +166,9 @@
       "type": "text",
       "title": "Identity Assurance Level:",
       "placeHolder": "",
-      "defaultValue": "N.A.",
+      "defaultValue": "3",
       "readOnly": true,
-      "isRequired": true,
+      "isRequired": false,
       "requiredErrorText": "Required Field"
     },
     {

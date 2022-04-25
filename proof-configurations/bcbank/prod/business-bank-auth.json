@@ -7,106 +7,75 @@
     "requested_attributes": [
       {
         "names": [
-          "postal_code",
-          "alternate_legal_name",
-          "city",
-          "registration_renewal_effective_date",
-          "province",
-          "registration_expiry_date",
-          "director_001_postal_code",
-          "director_002_city",
-          "registered_legal_name",
-          "credential_status",
-          "expiration_date",
-          "home_jurisdiction_legal_name_effective",
-          "director_002_country",
-          "entity_status_effective",
-          "issue_date",
-          "director_001_street_address",
-          "director_002_postal_code",
-          "director_002_full_name",
-          "entity_status",
-          "home_jurisdiction",
-          "entity_type",
-          "director_001_canadian_citizen",
-          "operating_name",
+          "postalCode",
+          "alternateOrgLegalName",
+          "locality",
+          "region",
+          "orgLegalName",
+          "homeJurisdictionLegalNameEffectiveDate",
+          "issueDate",
+          "homeJurisdiction",
+          "orgType",
           "legislation",
-          "director_002_canadian_citizen",
-          "director_001_city",
-          "registered_jurisdiction",
-          "director_002_street_address",
-          "registered_legal_name_effective",
-          "home_jurisdiction_legal_name",
-          "street_address",
+          "legalNameEffectiveDate",
+          "homeJurisdictionLegalName",
+          "streetAddress",
           "issuer",
-          "director_001_full_name",
-          "business_number",
-          "director_002_province",
-          "director_001_country",
-          "director_001_province",
-          "registration_date",
+          "CRABusinessNumber",
+          "registrationDate",
           "country",
-          "verified_organization_key"
+          "orgID"
         ],
         "restrictions": [
           {
             "schema_issuer_did": "G3BgNk1zGVoht1o9cDeuJs",
             "schema_name": "bc_registries_registration",
-            "schema_version": "0.1.0"
+            "schema_version": "0.1.2"
           }
         ]
       },
       {
         "names": [
-          "verified_person_key",
-          "verified_person_issuer",
-          "verified_organization_key",
-          "verified_organization_issuer",
-          "registered_legal_name",
+          "orgID",
+          "organizationIssuerLegalName",
           "relationship",
-          "relationship_description",
-          "relationship_status",
-          "relationship_status_effective",
+          "CRABusinessNumber",
+          "givenName",
+          "additionalName",
+          "familyName",
+          "title",
+          "relationshipEffectiveDate",
           "issuer",
-          "issue_date",
-          "expiration_date",
-          "credential_status"
+          "issueDate"
         ],
         "restrictions": [
           {
             "schema_issuer_did": "G3BgNk1zGVoht1o9cDeuJs",
             "schema_name": "bc_registries_relationship",
-            "schema_version": "0.1.0"
+            "schema_version": "0.1.2"
           }
         ]
       },
       {
         "names": [
-          "verified_person_key",
-          "given_names",
-          "additional_names",
-          "family_name",
-          "birthdate",
-          "street_address",
-          "postal_code",
-          "locality",
-          "region",
-          "country",
-          "phone_number",
-          "alternate_phone_number",
+          "givenName",
+          "additionalName",
+          "familyName",
+          "dateOfBirth",
+          "phoneNumber",
+          "alternatePhoneNumber",
           "email",
           "gender",
           "issuer",
-          "issue_date",
-          "expiration_date",
-          "credential_status",
-          "identity_assurance_level"
+          "issueDate",
+          "expirationDate",
+          "IdentityLevelOfAssurance"
         ],
         "restrictions": [
           {
             "schema_issuer_did": "5j8RRWipL5AK97JkoKhGoB",
             "schema_name": "verified_person",
-            "schema_version": "0.1.0"
+            "schema_version": "0.1.2"
           }
         ]
       }

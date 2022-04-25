@@ -7,6 +7,7 @@
       "title": "Organization ID:",
       "placeHolder": "",
       "isRequired": true,
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -32,7 +33,7 @@
       "type": "text",
       "title": "Additional Names:",
       "placeHolder": "",
-      "isRequired": true,
+      "isRequired": false,
       "readOnly": true,
       "requiredErrorText": "Required Field"
     },
@@ -69,9 +70,9 @@
       "type": "text",
       "title": "Relationship Description:",
       "placeHolder": "",
-      "defaultValue": "Sits at the Board of Directors of the Organization",
+      "defaultValue": "Sits on the Board of Directors of the Organization",
       "isRequired": true,
-      "readOnly": "true",
+      "readOnly": true,
       "requiredErrorText": "Required Field"
     },
     {
@@ -88,7 +89,7 @@
       "type": "text",
       "title": "Issuer:",
       "placeHolder": "",
-      "defaultValue": "BC Registries",
+      "defaultValue": "BC",
       "readOnly": true,
       "isRequired": true,
       "requiredErrorText": "Required Field"
@@ -104,7 +105,7 @@
     },
     {
       "type": "text",
-      "name": "registration_date",
+      "name": "registrationDate",
       "defaultValue": "ORG. REGISTRATION DATE",
       "readOnly": true,
       "visibleIf": "{relationshipEffectiveDate} empty"
@@ -114,7 +115,7 @@
       "name": "placeholder",
       "defaultValue": "placeholder",
       "readOnly": true,
-      "visibleIf": "{registered_legal_name} empty"
+      "visibleIf": "{organizationIssuerLegalName} empty"
     }
   ],
   "triggers": [

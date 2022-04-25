@@ -22,10 +22,6 @@ function setDateFields(survey) {
   ];
 
   var now = new Date();
-  var year = now.getFullYear();
-  var month = now.getMonth();
-  var day = now.getDate();
-  var future = new Date(year + 1, month, day);
   currentDateFields.forEach(function (dateField) {
     survey.setValue(dateField, new Intl.DateTimeFormat("en-CA").format(now));
     survey.getQuestionByName(dateField).readOnly = true;
@@ -52,7 +48,18 @@ function populateFields() {
   console.log("Date field set");
 }
 
+function addDirector(params){
+  var fnField = params[0];
+  var lnField = params[1];
+  var dirField = params[2];
+  var survey = this.survey;
+
+  var fname = survey.getValue(fnField);
+  var lname = survey.getValue(lnField);
+  survey.setValue(dirField, `${lname}, ${fname}`);
+}
+
 /* An array containing custom functions that will be automatically registered with
  * SurveyJS so that they can be used in triggers.
  */
-surveyFunctions = [populateFields];
+surveyFunctions = [populateFields, addDirector];

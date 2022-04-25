@@ -45,8 +45,8 @@
           "type": "text",
           "title": "Home Jurisdiction Legal Name:",
           "placeHolder": "",
-          "defaultValue": "N.A.",
-          "isRequired": true,
+          "defaultValue": "",
+          "isRequired": false,
           "requiredErrorText": "Required Field"
         },
         {
@@ -54,8 +54,8 @@
           "type": "text",
           "title": "Alternate Legal Name:",
           "placeHolder": "",
-          "defaultValue": "Not Provided",
-          "isRequired": true,
+          "defaultValue": "",
+          "isRequired": false,
           "requiredErrorText": "Required Field"
         }
       ]
@@ -77,6 +77,7 @@
           "title": "Address Type:",
           "placeHolder": "",
           "defaultValue": "Mailing",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         },
@@ -86,7 +87,8 @@
           "title": "Address Notes:",
           "placeHolder": "",
           "defaultValue": "",
-          "isRequired": true,
+          "readOnly": true,
+          "isRequired": false,
           "requiredErrorText": "Required Field"
         },
         {
@@ -131,8 +133,9 @@
           "type": "text",
           "title": "Legislation:",
           "placeHolder": "",
-          "defaultValue": "N.A.",
-          "isRequired": true,
+          "defaultValue": "",
+          "isRequired": false,
+          "readOnly":true,
           "requiredErrorText": "Required Field"
         },
         {
@@ -150,6 +153,7 @@
           "title": "Legislation Jurisdiction:",
           "placeHolder": "",
           "defaultValue": "BC",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         }
@@ -159,11 +163,30 @@
       "title": "Organization Directors - page {pageno} of {pagecount}.",
       "questions": [
         {
+          "name": "givenName",
+          "type": "text",
+          "title": "Given Name:",
+          "placeHolder": "",
+          "readOnly": true,
+          "requiredErrorText": "Required Field",
+          "visibleIf": "{CRABusinessNumber} empty"
+        },
+        {
+          "name": "familyName",
+          "type": "text",
+          "title": "Family Name:",
+          "placeHolder": "",
+          "readOnly": true,
+          "requiredErrorText": "Required Field",
+          "visibleIf": "{CRABusinessNumber} empty"
+        },
+        {
           "name": "directorCount",
           "type": "text",
           "title": "Director Count:",
           "placeHolder": "",
           "defaultValue": "1",
+          "readOnly": true,
           "isRequired": true,
           "requiredErrorText": "Required Field"
         },
@@ -173,7 +196,8 @@
           "title": "Director List:",
           "placeHolder": "",
           "defaultValue": "",
-          "isRequired": true,
+          "readOnly": true,
+          "isRequired": false,
           "requiredErrorText": "Required Field"
         }
       ]
@@ -241,6 +265,11 @@
       "type": "runexpression",
       "expression": "{placeholder} notempty",
       "runExpression": "populateFields()"
+    },
+    {
+      "type": "runexpression",
+      "expression": "{familyName} notempty && {givenName} notempty",
+      "runExpression": "addDirector('givenName','familyName', 'directorList')"
     }
   ]
 }

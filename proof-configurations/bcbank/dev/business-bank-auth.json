@@ -30,7 +30,7 @@
           {
             "schema_issuer_did": "QU5am4Uzi58wUUh3mzfb1b",
             "schema_name": "bc_registries_registration",
-            "schema_version": "0.1.0"
+            "schema_version": "0.1.2"
           }
         ]
       },
@@ -52,7 +52,7 @@
           {
             "schema_issuer_did": "QU5am4Uzi58wUUh3mzfb1b",
             "schema_name": "bc_registries_relationship",
-            "schema_version": "0.1.1"
+            "schema_version": "0.1.2"
           }
         ]
       },
@@ -62,12 +62,6 @@
           "additionalName",
           "familyName",
           "dateOfBirth",
-          "streetAddress",
-          "addressNotes",
-          "postalCode",
-          "locality",
-          "region",
-          "country",
           "phoneNumber",
           "alternatePhoneNumber",
           "email",
