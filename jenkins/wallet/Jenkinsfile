@@ -1,4 +1,4 @@
-def PIPELINE_NAME = "issuer-kit-wallet"
+def PIPELINE_NAME = "wallet"
 
 def LIB_NAME= "ised-business-banking-lib"
 def LIB_REPO = "https://github.com/bcgov/ised-business-banking-initiative.git"

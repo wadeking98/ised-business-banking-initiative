@@ -14,6 +14,7 @@ objects:
       labels:
         name: ${NAME}
         app: ${APP_NAME}
+        app.kubernetes.io/part-of: ${APP_NAME}
         app-group: ${APP_GROUP}
   - kind: BuildConfig
     apiVersion: v1
@@ -22,6 +23,7 @@ objects:
       labels:
         name: ${NAME}
         app: ${APP_NAME}
+        app.kubernetes.io/part-of: ${APP_NAME}
         app-group: ${APP_GROUP}
     spec:
       source:
@@ -32,10 +34,7 @@ objects:
         contextDir: ${SOURCE_CONTEXT_DIR}
       strategy:
         type: Docker
-        dockerStrategy:        
-          from:
-            kind: DockerImage
-            name: ${SOURCE_IMAGE}
+        dockerStrategy:
           dockerfilePath: ${DOCKER_FILE_PATH}
       output:
         to:
@@ -48,7 +47,7 @@ parameters:
     displayName: Name
     description: The name assigned to all of the resources defined in this template.
     required: true
-    value: agent
+    value: issuer-kit-agent
   - name: APP_NAME
     displayName: App Name
     description: Used to group components together in the OpenShift console.
@@ -69,7 +68,7 @@ parameters:
     displayName: Git Reference
     description: The git reference or branch.
     required: true
-    value: master
+    value: main
   - name: SOURCE_CONTEXT_DIR
     displayName: Source Context Directory
     description: The source context directory.
@@ -80,11 +79,6 @@ parameters:
     description: The path to the docker file defining the build.
     required: false
     value: docker/agent/Dockerfile
-  - name: SOURCE_IMAGE
-    displayName: Source Image
-    description: The fully-qualified name of the source image for this component. 
-    required: true
-    value: docker-remote.artifacts.developer.gov.bc.ca/bcgovimages/aries-cloudagent:py36-1.16-1_0.7.0
   - name: OUTPUT_IMAGE_TAG
     displayName: Output Image Tag
     description: The tag given to the built image.
