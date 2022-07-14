@@ -23,6 +23,8 @@
     "schema_name": "verified_person",
     "schema_version": "0.1.2",
     "tag":"verifiedPerson",
+    "id":"UvwKfRpFsiHEiWHj8NtNdL:2:verified_person:0.1.2",
+    "cred_def_id":"UvwKfRpFsiHEiWHj8NtNdL:3:CL:288429:verifiedPerson",
     "default": true,
     "public": false
   }

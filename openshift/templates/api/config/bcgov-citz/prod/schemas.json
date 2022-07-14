@@ -1,0 +1,31 @@
+[
+  {
+    "attributes": [
+      "givenName",
+      "additionalName",
+      "familyName",
+      "dateOfBirth",
+      "streetAddress",
+      "addressNotes",
+      "postalCode",
+      "locality",
+      "region",
+      "country",
+      "phoneNumber",
+      "alternatePhoneNumber",
+      "email",
+      "gender",
+      "issuer",
+      "issueDate",
+      "expirationDate",
+      "IdentityLevelOfAssurance"
+    ],
+    "schema_name": "verified_person",
+    "schema_version": "0.1.2",
+    "tag":"verifiedPerson",
+    "id":"5j8RRWipL5AK97JkoKhGoB:2:verified_person:0.1.2",
+    "cred_def_id":"5j8RRWipL5AK97JkoKhGoB:3:CL:288959:verifiedPerson",
+    "default": true,
+    "public": false
+  }
+]

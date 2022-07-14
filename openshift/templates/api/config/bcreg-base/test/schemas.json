@@ -27,6 +27,8 @@
     ],
     "schema_name": "bc_registries_registration",
     "schema_version": "0.1.2",
+    "id":"rcruXFgWnAXH44ofKfaRQ:2:bc_registries_registration:0.1.2",
+    "cred_def_id": "rcruXFgWnAXH44ofKfaRQ:3:CL:288920:verifiedOrganization",
     "tag":"verifiedOrganization",
     "public": false
   },
@@ -46,6 +48,8 @@
     ],
     "schema_name": "bc_registries_relationship",
     "schema_version": "0.1.2",
+    "id":"rcruXFgWnAXH44ofKfaRQ:2:bc_registries_relationship:0.1.2",
+    "cred_def_id": "rcruXFgWnAXH44ofKfaRQ:3:CL:288922:verifiedRelationship",
     "tag":"verifiedRelationship",
     "public": false
   }

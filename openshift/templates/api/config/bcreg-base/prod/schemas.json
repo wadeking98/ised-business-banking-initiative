@@ -1,0 +1,56 @@
+[
+  {
+    "attributes": [
+      "postalCode",
+      "alternateOrgLegalName",
+      "locality",
+      "region",
+      "orgLegalName",
+      "homeJurisdictionLegalNameEffectiveDate",
+      "issueDate",
+      "addressType",
+      "addressNotes",
+      "homeJurisdiction",
+      "orgType",
+      "legislation",
+      "legalNameEffectiveDate",
+      "homeJurisdictionLegalName",
+      "legislationJuisdiction",
+      "streetAddress",
+      "issuer",
+      "CRABusinessNumber",
+      "directorCount",
+      "directorList",
+      "registrationDate",
+      "country",
+      "orgID"
+    ],
+    "schema_name": "bc_registries_registration",
+    "schema_version": "0.1.2",
+    "id":"G3BgNk1zGVoht1o9cDeuJs:2:bc_registries_registration:0.1.2",
+    "cred_def_id": "G3BgNk1zGVoht1o9cDeuJs:3:CL:288960:verifiedOrganization",
+    "tag": "verifiedOrganization",
+    "public": false
+  },
+  {
+    "attributes": [
+      "orgID",
+      "organizationIssuerLegalName",
+      "relationship",
+      "CRABusinessNumber",
+      "givenName",
+      "additionalName",
+      "familyName",
+      "title",
+      "relationshipEffectiveDate",
+      "issuer",
+      "issueDate"
+    ],
+    "schema_name": "bc_registries_relationship",
+    "schema_version": "0.1.2",
+    "id":"G3BgNk1zGVoht1o9cDeuJs:2:bc_registries_relationship:0.1.2",
+    "cred_def_id": "G3BgNk1zGVoht1o9cDeuJs:3:CL:288963:verifiedRelationship",
+    "tag": "verifiedRelationship",
+    "public": false
+  }
+]
